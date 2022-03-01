@@ -1,0 +1,12 @@
+#cart {
+  tr td.text-start:nth-child(4) {
+    height: 90px;
+    align-items: center;
+  }
+  .rowClass {
+    background-color: red;
+  }
+  .v-btn:not(.v-btn--round).v-size--default {
+    height: 38px;
+  }
+}

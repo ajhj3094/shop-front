@@ -1,0 +1,25 @@
+#product, .spin-button {
+  .v-text-field__slot input {
+    text-align: center;
+  }
+  .v-icon.v-icon {
+    font-size: 30px;
+  }
+  button.v-icon.mdi-minus {
+    border-right: 1px solid rgba(0,0,0,0.2);
+    padding: 0 6px;
+  }
+  button.v-icon.mdi-plus {
+    border-left: 1px solid rgba(0,0,0,0.2);
+    padding: 0 6px;
+  }
+  .responsive-image .preview-box {
+    width: 300px;
+  }
+  .thumb-list .responsive-image {
+    width: 50px;
+  }
+  .thumb-list .responsive-image .zoomer-control .responsive-image {
+    width: 80px;
+  }
+}

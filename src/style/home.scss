@@ -1,0 +1,71 @@
+#menutext-container {
+  padding: 0;
+  height: 32px;
+  p {
+    line-height: 32px !important;
+  }
+  span {
+    color: #ad2e39;
+  }
+}
+
+.menu-tab-text {
+  color: #ad2e39 !important;
+  background: hsla(355, 58%, 43%, 0.1);
+}
+
+.test111 {
+  color: #000000 !important;
+  background: hsla(355, 58%, 43%, 0.1);
+}
+
+#recommend {
+  // height: 600px;
+  // background: $bgColor;
+  // background: linear-gradient(
+  //   180deg,
+  //   $bgColor 70%,
+  //   $navbarColor 70%
+  // );
+  .rec-wrap {
+    width: 480px;
+    min-width: 400px;
+    align-content: space-between;
+    height: 540px;
+  }
+  .v-image__image {
+    z-index: 0;
+    transition: all 200ms ease-in-out;
+    // 要有初始值，因為預設是 contain
+    background-size: 90% !important;
+  }
+  .v-card:hover > .v-image >.v-image__image {
+      background-size: 100% !important;
+  }
+  .v-card--link:before {
+    // 消除 prop to 所給的點擊後背景色
+    background: none;
+  }
+  .v-card__title {
+    transition: all 200ms ease-in-out;
+  }
+  .v-card:hover .v-card__title {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    color: $testColor;
+  }
+}
+
+// 過渡
+// .transition-fast-in-fast-out
+
+#bottom-navigation {
+  padding: 6px;
+  button > span > span {
+    font-size: 1.1rem;
+  }
+  .theme--dark.v-btn:hover::before {
+    opacity: 0.18;
+  }
+}
+
