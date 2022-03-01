@@ -2,10 +2,10 @@
 v-app
   v-app-bar#navbar.z-100(
       app
+
       prominent
       height='196'
-      hide-on-scroll
-      scroll-threshold='300'
+
     )
     .w-100.sd-color
       v-container#navtext-container.xl-mw.pa-0
@@ -22,10 +22,11 @@ v-app
             max-width='125'
           )
         v-text-field.flex-grow-0.align-center.mr-auto(
+          :class='{ noresult: this.$store.state.product.searchBar.length > 0 && this.$store.state.product.keywords.length === 0 }'
           dense
           outlined
           color='#000000'
-          @input='search()'
+          @input='search(0)'
           v-model='keywords'
           @change='search(0)'
           @click:append='search(0)'
@@ -99,13 +100,13 @@ v-app
             show-arrows
             hide-slider
           )
-            //- v-tabs-slider(color="maincolor")
             v-tab.px-0.self-tab-item(
               v-for='tab in tabs'
               :key='tab.id'
               :to='tab.to'
               exact-active-class='menu-tab-text'
               append
+              @click='clearSearchBar(tab.id)'
             )
               span {{ tab.title }}
               v-divider(inset vertical)
@@ -113,7 +114,7 @@ v-app
       v-container#menutext-container.xl-mw.pa-0
         p.mb-0.text-subtitle-2.white--text.text-center
           | 嗨！HIVER 的會員，聖誕節起首筆消費即享有 8 折優惠！活動將於 3/4 截止
-  v-main
+  v-main#main
     vue-page-transition(name='fade-in-right')
       //- 很重要，否則做路由參數時更換網址 id 頁面不會重新渲染
       router-view(:key='$route.fullPath')
@@ -129,7 +130,6 @@ v-app
 </template>
 
 <script>
-// import Navbar from './components/Navbar.vue'
 
 export default {
   name: 'App',
@@ -147,7 +147,7 @@ export default {
       // 頁面預選單個 tab
       active_tab: 0,
       tabs: [
-        { id: 1, title: '首頁', to: '/' },
+        { id: 1, title: '購物商城', to: '/shop' },
         { id: 2, title: '登山健行', to: '/shop/hiking' },
         { id: 3, title: '滑雪', to: '/shop/ski' },
         { id: 4, title: '外套', to: '/shop/coat' },
@@ -177,6 +177,11 @@ export default {
     }
   },
   methods: {
+    clearSearchBar (value) {
+      if (value > 1) {
+        this.$store.commit('product/clear')
+      }
+    },
     search (value) {
       if (value === 0) {
         this.$store.dispatch('product/search', this.keywords)
@@ -204,6 +209,17 @@ export default {
   },
   async created () {
     this.$store.dispatch('user/getInfo')
+  },
+  watch: {
+    keywords: {
+      deep: true,
+      handler (newValue, oldValue) {
+        console.log(newValue, oldValue)
+        if (this.keywords.length > 0 || (oldValue === 1) || (newValue === 1)) {
+          this.$router.push('/shop')
+        }
+      }
+    }
   }
 }
 </script>

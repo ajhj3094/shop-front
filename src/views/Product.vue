@@ -8,7 +8,6 @@ v-container#product
       v-img(height='600' width='900' :src='preview')
       .w-100.d-flex.justify-center
         v-card.mt-2.mx-1(:img='item' v-for='item in image' :key='item.id' height='110' width='100' @click='changepic(item)')
-          //- v-img(:src='item')
     v-col(cols='6')
       h1.mt-2 {{ name }}
       h4 {{ category }}
@@ -23,7 +22,7 @@ v-container#product
             v-select(v-model='sizedecision' :items='sizeoptions' label='請選擇商品尺寸' outlined chips)
           v-col(cols='12' v-if='!color&&!size' style="height: 120px")
               h2.text-center.grey--text 統一尺寸及顏色
-        v-text-field.mt-10(
+        v-text-field.mt-10.w-50(
           readonly
           height='20'
           width='50'
@@ -39,17 +38,14 @@ v-container#product
           @click:prepend-inner='quantity > 0 ? quantity-- : null'
         )
       v-btn.mt-8(color='primary' @click='addCart' block height='80') 加入購物車
-      router-link.d-flex.justify-end.mt-4.text-decoration-none(:to='"/shop"')
-        v-btn(color='red' dark) 回商城
-    //- v-col(cols='12')
-      //- v-img.w-100(:src='image[0]')
-      //- p(style='white-space: pre;') {{ description }}
+      //- router-link.d-flex.justify-end.mt-4.text-decoration-none(:to='"/shop"')
+      v-btn.mt-8(color='red' @click='goback' dark block height='80') 上一頁
     v-col(cols='12')
       v-dialog(
         v-model='reviewdialog'
         width='500px'
         color='red'
-        @click:outside='form.text = ""'
+        @click:outside='form.text = "";form.rating = 3'
       )
         template(#activator='{ on, attrs }')
           v-btn(
@@ -95,7 +91,7 @@ v-container#product
                 ) 送出
               v-col(cols='6')
                 v-btn(
-                  @click='form.text = ""'
+                  @click='form.text = "";form.rating = 2;reviewdialog = false'
                   color='error'
                   block
                 ) 取消
@@ -106,7 +102,6 @@ v-container#product
           )
             v-img(:src='"https://source.boringavatars.com/beam/120/" + item._id')
           | {{ item.user }}
-        //- br
         v-card-subtitle.mt-n2
           v-rating(
             readonly
@@ -123,10 +118,6 @@ v-container#product
         v-card-text
           p.text-body-1.grey--text.text--darken-2.mb-0(style='white-space: pre-wrap;') {{ item.text }}
           p.text-right.mb-0 {{ new Date(item.date).toLocaleString('zh-tw') }}
-  //- v-container
-  //-   v-img(height='500' width='500' :src='preview')
-  //-     v-card(v-for='item in image' :key='item.id' height='50' width='50' @click='changepic(item)')
-  //-       v-img(:src='item')
 </template>
 
 <script>
@@ -168,11 +159,11 @@ export default {
     }
   },
   methods: {
+    goback () {
+      this.$router.back(-1)
+    },
     iwainttoreview () {
       this.reviewdialog = true
-    },
-    testsizecolor () {
-      console.log()
     },
     changepic (value) {
       this.preview = value
@@ -233,7 +224,6 @@ export default {
     try {
       // 用路由參數把網址的 id 抓進來
       const { data } = await this.api.get('/products/' + this.$route.params.id)
-      console.log(data)
       this.name = data.result.name
       this.price = data.result.price
       this.description = data.result.description
@@ -247,7 +237,6 @@ export default {
       this.coloroptions = data.result.coloroptions
       document.title = `Hiver | ${this.name}`
       this.preview = this.image[0]
-      // const { data: redData } = await this.api.get('users/me')
     } catch (error) {
       this.$router.push('/')
     }

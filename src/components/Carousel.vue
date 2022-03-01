@@ -2,9 +2,9 @@
 v-carousel#carousel(
   v-model='model'
   cycle
-  interval='300000'
+  interval='6000'
   hide-delimiter-background
-  height='680'
+  height='600'
 )
   v-carousel-item(
     v-for='(color, i) in pics'
@@ -12,8 +12,8 @@ v-carousel#carousel(
   )
     v-parallax(
       dark
-      :src='color'
-      height='680'
+      :src='require("@/assets/" + color)'
+      height='600'
     )
       v-row(align='center' justify='center')
         v-col.text-center(cols='12')
@@ -29,10 +29,10 @@ export default {
     return {
       model: 0,
       pics: [
-        'https://picsum.photos/seed/picsum/1920/1080',
-        'https://picsum.photos/1920/1080',
-        'https://picsum.photos/id/1003/1920/1080',
-        'https://picsum.photos/1920/1080?grayscale'
+        'live.jpg',
+        'live-01.jpg',
+        'live-7.jpg',
+        'live-4.jpg'
       ]
     }
   }

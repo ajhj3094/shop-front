@@ -11,16 +11,19 @@
         //-     absolute
         //-     bottom
         //-   ) 查看更多
-        v-card.d-flex.flex-column.justify-end.px-5.py-6(
-          img='https://picsum.photos/id/10/1920/1080'
+        v-card.d-flex.flex-column.justify-end(
           height='560'
-          to='/'
         )
-          v-card-title
-            p.white--text() 登山健行
-          v-card-actions
-            v-btn(
-              color='success'
+          v-img.pa-12(
+            src='@/assets/banner-2.jpg'
+          )
+            .fill-height.bottom-gradient(style='position:absolute;bottom:0;top:0;left:0;right:0;')
+            h1.grey--text.text--lighten-2.mb-5() 登山健行
+            v-btn.w-25.mb-4.text-body-1(
+              color='maincolor'
+              height='50'
+              dark
+              to='/shop/hiking'
             ) 了解更多
       v-col(cols='4')
         v-row
@@ -172,20 +175,23 @@
         //-     absolute
         //-     bottom
         //-   ) 查看更多
-        v-card.d-flex.flex-column.justify-end.px-5.py-6(
-          img='https://picsum.photos/id/10/1920/1080'
+        v-card.d-flex.flex-column.justify-end(
           height='560'
-          to='/'
         )
-          v-card-title
-            p.white--text() 登山健行
-          v-card-actions
-            v-btn(
-              color='success'
+          v-img.pa-12(
+            src='@/assets/banner-1.jpg'
+          )
+            .fill-height.bottom-gradient(style='position:absolute;bottom:0;top:0;left:0;right:0;')
+            h1.grey--text.text--darken-2.mb-5() 滑雪
+            v-btn.w-25.mb-4.text-body-1(
+              color='maincolor'
+              height='50'
+              dark
+              to='/shop/ski'
             ) 了解更多
   v-parallax(
-    height='250'
-    src='https://picsum.photos/id/10/1920/1080'
+    height='280'
+    src='@/assets/parallax.jpg'
   )
   v-container(fluid)#recommendCarousel.py-6.my-3
     h1.mb-8 Recommend

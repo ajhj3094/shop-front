@@ -8,3 +8,7 @@ export const search = (state, data) => {
 export const updateKeywords = (state, data) => {
   state.searchBar = data
 }
+
+export const clear = (state, data) => {
+  state.searchBar = ''
+}

@@ -24,6 +24,14 @@ const routes = [
     }
   },
   {
+    path: '/shop/:id',
+    name: 'Shop',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/Shop.vue'),
+    meta: {
+      title: 'Hiver | 商城'
+    }
+  },
+  {
     path: '/product',
     name: 'Product',
     component: () => import(/* webpackChunkName: "product" */ '../views/Product.vue'),

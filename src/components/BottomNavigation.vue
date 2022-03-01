@@ -13,7 +13,7 @@ v-bottom-navigation#bottom-navigation(
     height='60'
     :to='btn.to'
   )
-    span.white--text {{ btn.title }}
+    span.text-subtitle-1.white--text.font-weight-bold.mt-1 {{ btn.title }}
     v-icon.white--text(large) {{ btn.icon }}
 </template>
 
