@@ -109,5 +109,9 @@ a.text-decoration-none:hover {
 }
 
 .noresult {
-  border: 2px solid red;
+  color: rgba(219, 55, 55, 0.87) !important;
+}
+
+.v-card--link:focus:before {
+  opacity: 0.00;
 }

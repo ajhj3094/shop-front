@@ -5,41 +5,44 @@ v-container#product
     h1 商品已下架
   v-row
     v-col(cols='6').d-flex.flex-column.align-center
-      v-img(height='600' width='900' :src='preview')
+      v-img.my-4(height='520' width='900' :src='preview' contain)
       .w-100.d-flex.justify-center
-        v-card.mt-2.mx-1(:img='item' v-for='item in image' :key='item.id' height='110' width='100' @click='changepic(item)')
+        v-card.mt-2.mx-1(v-for='item in image' :key='item.id' height='110' width='100' @click='changepic(item)' flat)
+          v-img(:src='item' contain)
     v-col(cols='6')
-      h1.mt-2 {{ name }}
+      h1.mt-4 {{ name }}
       h4 {{ category }}
-      p(style='white-space: pre;' v-if='description.length > 0') {{ description }}
+      p.mt-2(style='white-space: pre;' v-if='description.length > 0') {{ description }}
       p(style='white-space: pre;' v-else) 無商品描述
-      h2.text-left $ {{ price }}
+      h1.text-left $ {{ price }}
       v-form.mt-16
-        v-row.justify-end
-          v-col(cols='6' v-if='color' style="height: 120px")
-            v-select(v-model='colordecision' :items='coloroptions' label='請選擇商品顏色' outlined chips)
-          v-col(cols='6' v-if='size' style="height: 120px")
-            v-select(v-model='sizedecision' :items='sizeoptions' label='請選擇商品尺寸' outlined chips)
-          v-col(cols='12' v-if='!color&&!size' style="height: 120px")
-              h2.text-center.grey--text 統一尺寸及顏色
-        v-text-field.mt-10.w-50(
-          readonly
-          height='20'
-          width='50'
-          type='number'
-          v-model.number='quantity'
-          min='0'
-          :rules='qtyrules'
-          hide-spin-buttons
-          outlined
-          append-icon='mdi-plus'
-          prepend-inner-icon='mdi-minus'
-          @click:append='quantity++'
-          @click:prepend-inner='quantity > 0 ? quantity-- : null'
-        )
-      v-btn.mt-8(color='primary' @click='addCart' block height='80') 加入購物車
-      //- router-link.d-flex.justify-end.mt-4.text-decoration-none(:to='"/shop"')
-      v-btn.mt-8(color='red' @click='goback' dark block height='80') 上一頁
+        v-row
+          v-col(cols='6' v-if='color' style="height: 90px")
+            v-select(v-model='colordecision' :items='coloroptions' label='請選擇商品顏色' outlined chips hide-details)
+          v-col(cols='6' v-if='size' style="height: 90px")
+            v-select(v-model='sizedecision' :items='sizeoptions' label='請選擇商品尺寸' outlined chips hide-details)
+          v-col(cols='6' v-if='!size || !color' style="height: 90px")
+          v-col.mt-6(cols='2' style="height: 90px")
+            h2 數量
+          v-col.mt-6(cols='7' style="height: 90px")
+            v-text-field(
+              readonly
+              height='20'
+              type='number'
+              v-model.number='quantity'
+              min='0'
+              :rules='qtyrules'
+              hide-spin-buttons
+              outlined
+              append-icon='mdi-plus'
+              prepend-inner-icon='mdi-minus'
+              @click:append='quantity++'
+              @click:prepend-inner='quantity > 0 ? quantity-- : null'
+            )
+          v-col.mt-5(cols='9' style="height: 90px")
+            v-btn(color='primary' @click='addCart' block height='60') 加入購物車
+          v-col(cols='3' style="height: 90px")
+            v-btn.mt-8(color='red' @click='goback' dark block height='40') 上一頁
     v-col(cols='12')
       v-dialog(
         v-model='reviewdialog'

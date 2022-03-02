@@ -12,7 +12,7 @@
         //-     bottom
         //-   ) 查看更多
         v-card.d-flex.flex-column.justify-end(
-          height='560'
+
         )
           v-img.pa-12(
             src='@/assets/banner-2.jpg'
@@ -176,7 +176,7 @@
         //-     bottom
         //-   ) 查看更多
         v-card.d-flex.flex-column.justify-end(
-          height='560'
+
         )
           v-img.pa-12(
             src='@/assets/banner-1.jpg'

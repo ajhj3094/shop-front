@@ -5,11 +5,11 @@
 //-   v-card-subtitle {{ product.category }} - {{ '$ ' + product.price }}
 //-   v-card-text(style='white-space: pre;') {{ product.description }}
 div
-  v-card.card-product(:to='"/product/" + product._id')
-    v-img(:src="waiting" height="330")
+  v-card.card-product(:to='"/product/" + product._id' flat)
+    v-img(:src="waiting" height="330" contain)
   .d-flex.justify-center
-    v-card.my-2(:img='src' width='60' height='70' v-for='src in product.image' :key='src.id' @click='changesrc(src)')
-      //- v-img(:src='src' width='60' height='70')
+    v-card.my-2(v-for='src in product.image' :key='src.id' @click='changesrc(src)' flat :class="{ 'mx-1': product.image.length < 6 }")
+      v-img(:src='src' width='45' height='55' contain)
   router-link.text-truncate.w-100.d-flex.flex-column.align-center.black--text.text-decoration-none.mb-2(:to='"/product/" + product._id')
     h4.text-center.pcardtext.w-100.text-truncate
       | {{ product.name }}

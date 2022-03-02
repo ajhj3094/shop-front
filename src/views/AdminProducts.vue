@@ -104,11 +104,14 @@
         label="Search"
         single-line
         hide-details
+        outlined
+        autofocus
+        width=''
       )
     v-data-table(
       :headers="headers"
       :items="products"
-      :items-per-page="5"
+      :items-per-page="10"
       :search="search"
       class="elevation-1"
       show-group-by
@@ -118,7 +121,8 @@
       no-data-text='沒有商品'
     )
       template(#item.image='{item}')
-        v-img.mt-1.mx-auto(:src='item.image[0]' style='width: 70px;height: 50px' contain)
+        v-card(flat :to='"/product/" + item._id')
+          v-img.mt-1.mx-auto(:src='item.image[0]' style='width: 70px;height: 50px' contain)
         p.mb-0 共 {{ item.image.length}} 張圖片
       template(#item.price='{item}')
         //- div.d-flex.justify-space-between(style="width:30%")
@@ -142,6 +146,8 @@ export default {
         { text: '商品分類', align: 'center', value: 'category' },
         { text: '使用者分類', align: 'center', value: 'gender' },
         { text: '說明', align: 'center', value: 'description' },
+        { text: '尺寸', align: 'center', value: 'size' },
+        { text: '顏色', align: 'center', value: 'coloroptions' },
         { text: '上架', align: 'center', value: 'sell' },
         { text: '操作', align: 'center', value: 'none' }
       ],
@@ -225,11 +231,18 @@ export default {
       this.fileRecordsForUpload = []
       this.fileRecords = []
       this.form = {
+        name: '',
+        price: null,
+        description: '',
         image: [],
+        sell: false,
+        color: false,
+        coloroptions: [],
+        size: false,
         category: null,
         gender: null,
-        _id: '',
-        index: -1
+        index: -1,
+        _id: ''
       }
     },
     async submitModal () {
@@ -267,6 +280,7 @@ export default {
               authorization: 'Bearer ' + this.user.token
             }
           })
+          console.log(data.result)
           // console.log(...this.form)
           // this.products[this.form.index] = { ...this.form, image: data.result.image }
           // 編輯後 table 不會更新，所有這裡編輯後整條刪除後再丟編輯後的進去那該位置
@@ -314,10 +328,12 @@ export default {
         image: [],
         sell: false,
         color: false,
+        coloroptions: [],
         size: false,
         category: null,
         gender: null,
-        index: -1
+        index: -1,
+        _id: ''
       }
     },
     editProduct (id) {

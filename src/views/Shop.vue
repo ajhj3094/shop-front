@@ -12,11 +12,11 @@ v-container#shop
     | 共 {{ this.$store.state.product.keywords.length }} 筆搜尋結果
     v-icon(x-large right) mdi-magnify
   v-row
-    v-col(cols='12' md='6' lg='3' v-if='searchBar.length > 0' v-for='product in keywords' :key='product._id')
+    v-col.pa-5(cols='12' md='6' lg='3' v-if='searchBar.length > 0' v-for='product in keywords' :key='product._id')
       ProductCard(
         :product='product'
       )
-    v-col(cols='12' md='6' lg='3' v-if='searchBar.length === 0' v-for='product in products' :key='product._id')
+    v-col.pa-5(cols='12' md='6' lg='3' v-if='searchBar.length === 0' v-for='product in products' :key='product._id')
       ProductCard(
         :product='product'
       )
@@ -47,11 +47,13 @@ export default {
       if (resData.gender === '男生') {
         const { data: maleData } = await this.api.get('/products/male')
         this.products = maleData.result
+        this.title = resData.gender
         return
       }
       if (resData.gender === '女生') {
         const { data: femaleData } = await this.api.get('/products/female')
         this.products = femaleData.result
+        this.title = resData.gender
         return
       }
       this.title = resData.category
