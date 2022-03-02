@@ -2,7 +2,7 @@
 v-container#product
   v-overlay.text-center(:value="!this.sell" dark)
     v-progress-circular.mx-auto(indeterminate size="64")
-    h1 商品已下架
+    //- h1 商品已下架
   v-row
     v-col(cols='6').d-flex.flex-column.align-center
       v-img.my-4(height='520' width='900' :src='preview' contain)
