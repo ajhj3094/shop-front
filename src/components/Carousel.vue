@@ -18,9 +18,9 @@ v-carousel#carousel(
       v-row(align='center' justify='center')
         v-col.text-center(cols='12')
           h1.text-h4.font-weight-thin.mb-4.
-            Vuetify
+            25% OFF NEW STYLES
           h4.subheading.
-            Build your application today!
+            Snow Outerwear & More
 </template>
 
 <script>
@@ -29,9 +29,8 @@ export default {
     return {
       model: 0,
       pics: [
-        'live.jpg',
-        'live-01.jpg',
-        'live-7.jpg',
+        'live-1.jpg',
+        'live-3.jpg',
         'live-4.jpg'
       ]
     }

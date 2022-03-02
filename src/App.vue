@@ -118,7 +118,7 @@ v-app
     vue-page-transition(name='fade-in-right')
       //- 很重要，否則做路由參數時更換網址 id 頁面不會重新渲染
       router-view(:key='$route.fullPath')
-  v-footer(color='darkbg' padless)
+  v-footer.mt-5(color='darkbg' padless)
     v-row(justify='center' no-gutters)
       v-btn.my-2(v-for='link in links' :key='link' color='white' text rounded).
         {{ link }}

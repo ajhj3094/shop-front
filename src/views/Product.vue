@@ -14,14 +14,18 @@ v-container#product
       h4 {{ category }}
       p.mt-2(style='white-space: pre;' v-if='description.length > 0') {{ description }}
       p(style='white-space: pre;' v-else) 無商品描述
-      h1.text-left $ {{ price }}
+      h1.text-left.maincolor--text $ {{ price }}
       v-form.mt-16
         v-row
           v-col(cols='6' v-if='color' style="height: 90px")
             v-select(v-model='colordecision' :items='coloroptions' label='請選擇商品顏色' outlined chips hide-details)
+          v-col(cols='6' v-else style="height: 90px")
+            v-select(v-model='colordecision' :items='coloroptions' label='此商品為單一顏色' outlined chips hide-details disabled)
           v-col(cols='6' v-if='size' style="height: 90px")
             v-select(v-model='sizedecision' :items='sizeoptions' label='請選擇商品尺寸' outlined chips hide-details)
-          v-col(cols='6' v-if='!size || !color' style="height: 90px")
+          v-col(cols='6' v-else style="height: 90px")
+            v-select(v-model='sizedecision' :items='sizeoptions' label='此商品為單一尺寸' outlined chips hide-details disabled)
+          //- v-col(cols='12' v-if='!size || !color' style="height: 90px")
           v-col.mt-6(cols='2' style="height: 90px")
             h2 數量
           v-col.mt-6(cols='7' style="height: 90px")
@@ -39,11 +43,17 @@ v-container#product
               @click:append='quantity++'
               @click:prepend-inner='quantity > 0 ? quantity-- : null'
             )
+          v-col(cols='12' style="height: 0px")
           v-col.mt-5(cols='9' style="height: 90px")
-            v-btn(color='primary' @click='addCart' block height='60') 加入購物車
+            v-btn(color='yellowbtn' @click='addCart' block height='60')
+              p.mb-0.sd-font.darkbg--text 加入購物車
           v-col(cols='3' style="height: 90px")
             v-btn.mt-8(color='red' @click='goback' dark block height='40') 上一頁
-    v-col(cols='12')
+    v-col(cols='6')
+      v-divider
+    v-col(cols='6')
+    //- v-spacer
+    v-col(cols='6')
       v-dialog(
         v-model='reviewdialog'
         width='500px'
@@ -53,11 +63,13 @@ v-container#product
         template(#activator='{ on, attrs }')
           v-btn(
             block
-            color="red lighten-2"
+            color="primary"
             dark
             v-bind="attrs"
             v-on="on"
-          ) 我要留言
+            height='50'
+          )
+            p.mb-0.sd-font 我要評論
         v-card
           v-card-title
             v-avatar(
@@ -98,8 +110,9 @@ v-container#product
                   color='error'
                   block
                 ) 取消
-    v-col.d-flex.flex-column-reverse(cols='12')
-      v-card.my-3.mx-5(v-for='item in review' :key='item._id')
+    v-col.d-flex.flex-column-reverse(cols='6')
+    v-col.d-flex.flex-column-reverse(cols='6')
+      v-card.my-3.mx-5.reviewcard(v-for='item in review' :key='item._id')
         v-card-title
           v-avatar.mr-3(
           )
@@ -119,7 +132,7 @@ v-container#product
             value="3"
           )
         v-card-text
-          p.text-body-1.grey--text.text--darken-2.mb-0(style='white-space: pre-wrap;') {{ item.text }}
+          p.text-body-1.grey--text.text--darken-3.font-weight-bold.sd-font.mb-0(style='white-space: pre-wrap;') {{ item.text }}
           p.text-right.mb-0 {{ new Date(item.date).toLocaleString('zh-tw') }}
 </template>
 

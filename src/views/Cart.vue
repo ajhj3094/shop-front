@@ -57,8 +57,9 @@ v-container#cart
     template(#item.custom="{ item }")
       ul
         li(v-for='cus in item.custom' v-if='cus') {{ cus }}
-  h1 總金額 {{ total.toString() }}
-  v-btn(@click='checkout' color='error' :disabled='products.length === 0') 結帳
+  h1.mt-4 總金額 {{ total.toString() }}
+  v-btn.mt-4(width='180' @click='checkout' color='error' :disabled='products.length === 0')
+    p.sd-font.mb-1 結帳
 </template>
 
 <script>

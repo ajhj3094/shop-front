@@ -30,7 +30,17 @@ p, span{
 
 .ct-font {
   font-family: $ctFont !important;
+  font-size: 1.8rem !important;
+  letter-spacing: 0.10rem !important;
+  font-weight: 700;
 }
+.sd-font {
+  font-family: $ctFont !important;
+  font-size: 1.3rem !important;
+  letter-spacing: 0.10rem !important;
+  font-weight: 500;
+}
+
 
 .xl-mw, .container {
   @media (min-width: 1904px) {
@@ -114,4 +124,10 @@ a.text-decoration-none:hover {
 
 .v-card--link:focus:before {
   opacity: 0.00;
+}
+
+#shop {
+  .b-text {
+    color: rgb(100, 100, 100) !important;
+  }
 }
