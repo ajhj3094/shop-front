@@ -45,14 +45,14 @@ v-app
             to='/register'
             v-if='!user.isLogin'
           )
-            v-icon.mr-1(color) mdi-account-outline
+            v-icon.mr-1(color) mdi-account-plus-outline
             p.mb-0.font-weight-light 註冊
           v-btn.ml-3(
             depressed
             to='/login'
             v-if='!user.isLogin'
           )
-            v-icon.mr-1(color) mdi-account-outline
+            v-icon.mr-1(color) mdi-login-variant
             p.mb-0.font-weight-light 登入
           v-btn.ml-3(
             depressed
@@ -66,14 +66,14 @@ v-app
             @click='logout'
             v-if='user.isLogin'
           )
-            v-icon.mr-1(color) mdi-account-outline
+            v-icon.mr-1(color) mdi-logout-variant
             p.mb-0.font-weight-light 登出
           v-btn.ml-3(
             depressed
             v-if='user.isLogin'
             to='/orders'
           )
-            v-icon.mr-1(color) mdi-account-outline
+            v-icon.mr-1(color) mdi-order-bool-descending
             p.mb-0.font-weight-light 訂單
           v-btn.ml-3(
             depressed
